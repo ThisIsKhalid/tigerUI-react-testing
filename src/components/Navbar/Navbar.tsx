@@ -16,6 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   const handleMobileMenuToggle = () => {
     setShowMobileMenu(!showMobileMenu);
   };
+
   return (
     <nav>
       <div
@@ -34,7 +35,9 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               {link.title}
             </a>
             {link.submenu && (
-              <ul>
+              <ul data-testid="submenu">
+                {" "}
+                {/* Add data-testid for the submenu */}
                 {link.submenu.map((sublink) => (
                   <li key={sublink.url}>
                     <a
@@ -73,7 +76,4 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   );
 };
 
-
 export default Navbar;
-
-//* in ul ->  data-testid : This attribute will be used in the test case to check for the visibility of the desktop menu.
