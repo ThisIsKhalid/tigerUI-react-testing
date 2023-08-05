@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
 
   useEffect(() => {
     const checkIsDesktop = () => {
-      setIsDesktop(window.innerWidth >= 1024); // (adjust as needed)
+      setIsDesktop(window.innerWidth >= 1024);
     };
 
     checkIsDesktop();

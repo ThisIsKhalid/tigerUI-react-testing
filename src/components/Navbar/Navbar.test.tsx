@@ -22,14 +22,14 @@ describe("Navbar", () => {
     setViewport(1024, 768); // Set a desktop-like viewport size
     render(<Navbar links={links} />);
     const desktopMenu = screen.getByTestId("desktop-menu");
-    expect(desktopMenu).toHaveClass("menu"); // Change "show" to "menu"
+    expect(desktopMenu).toHaveClass("menu");
   });
 
   it("renders correctly on mobile", () => {
     setViewport(375, 812); // Set a mobile-like viewport size (iPhone X)
     render(<Navbar links={links} />);
     const mobileMenu = screen.getByTestId("mobile-menu");
-    expect(mobileMenu).toHaveClass("menu-mobile"); // Change "show" to "menu-mobile"
+    expect(mobileMenu).toHaveClass("menu-mobile");
   });
 
   //! Menu Items and Dropdowns  && Mobile Navigation----------------
