@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import "./Navbar.css";
 
 interface NavLink {
   title: string;
@@ -12,10 +13,27 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ links }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const handleMobileMenuToggle = () => {
     setShowMobileMenu(!showMobileMenu);
   };
+
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024); // (adjust as needed)
+    };
+
+    checkIsDesktop();
+
+    // Add event listener to check for window resize and update isDesktop state accordingly
+    window.addEventListener("resize", checkIsDesktop);
+
+    return () => {
+      // Remove the event listener on component unmount
+      window.removeEventListener("resize", checkIsDesktop);
+    };
+  }, []);
 
   return (
     <nav>
@@ -26,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
         ☰
       </div>
       <ul
-        className={`menu ${showMobileMenu ? "show" : ""}`}
+        className={`menu ${isDesktop && showMobileMenu ? "show" : ""}`}
         data-testid="desktop-menu"
       >
         {links.map((link) => (
